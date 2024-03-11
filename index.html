@@ -38,8 +38,6 @@
                 const li = document.createElement("li");
                 li.textContent = taskName ;
                 
-                
-
                 const deleteIcon = document.createElement("i");
                 deleteIcon.className = "fas fa-trash-alt icon delete-icon";
                 deleteIcon.onclick = function() {
@@ -63,8 +61,6 @@
                     }
                 };
                 li.appendChild(updateIcon);
-                
-
                 taskList.appendChild(li);
                 taskList.appendChild(document.createElement("br"))
                 taskCounter++;
