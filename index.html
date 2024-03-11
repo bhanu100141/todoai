@@ -1,78 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
 
-<body>
+  <body>
     <div class="main-container">
-        <div class="container">
-            <h1 class="heading">Day Goals!</h1>
-            <input type="text" id="taskInput" placeholder="Write Code"><br>
-            <button onclick="addTask()">Add Todo</button>
-            <ul id="taskList" class="tastlist"></ul>
-            <div id="root"></div>
-        </div>
+      <div class="container">
+        <h1 class="heading">Day Goals!</h1>
+        <input type="text" id="taskInput" placeholder="Write Code" /><br />
+        <button onclick="addTask()">Add Todo</button>
+        <ul id="taskList" class="tastlist"></ul>
+        <div id="root"></div>
+      </div>
     </div>
     <script>
-        let taskCounter = 0;
+      let taskCounter = 0;
 
-        function addTask() {
-            const input = document.getElementById("taskInput");
-            const taskList = document.getElementById("taskList");
+      function addTask() {
+        const input = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
 
-            if (input.value.trim() === "") {
-                alert("Please enter a task");
-                return;
-            }
-
-            const taskName = input.value.split(" ")[0];
-            const taskQuantity = parseInt(input.value.split(" ")[1]) || 1;
-
-            for (let i = 0; i < taskQuantity; i++) {
-                const li = document.createElement("li");
-                li.textContent = taskName ;
-                
-                const deleteIcon = document.createElement("i");
-                deleteIcon.className = "fas fa-trash-alt icon delete-icon";
-                deleteIcon.onclick = function() {
-                    taskCounter--;
-                    input.placeholder = "Write Code " + taskCounter;
-                    li.remove();
-                };
-                li.appendChild(deleteIcon);
-                
-
-                const updateIcon = document.createElement("i");
-                updateIcon.className = "fas fa-pencil-alt icon update-icon";
-                let updateCount = 0;
-                updateIcon.onclick = function() {
-                    updateCount++;
-                    const updatedTaskName = prompt("Enter updated task name:");
-                    if (updatedTaskName !== null && updatedTaskName.trim() !== "") {
-                        li.textContent = updatedTaskName + ' (Updated ' + updateCount + ' Times)';
-                        li.appendChild(deleteIcon);
-                        li.appendChild(updateIcon);
-                    }
-                };
-                li.appendChild(updateIcon);
-                taskList.appendChild(li);
-                taskList.appendChild(document.createElement("br"))
-                taskCounter++;
-
-            }
-
-            input.placeholder = "Write code " + taskCounter;
-            input.value = "";
-            // taskList.appendChild(document.createElement("br"));
-            
+        if (input.value.trim() === "") {
+          alert("Please enter a task");
+          return;
         }
-    </script>
-</body>
 
+        const taskName = input.value.split(" ")[0];
+        const taskQuantity = parseInt(input.value.split(" ")[1]) || 1;
+
+        for (let i = 0; i < taskQuantity; i++) {
+          const li = document.createElement("li");
+          li.textContent = taskName;
+
+          const deleteIcon = document.createElement("i");
+          deleteIcon.className = "fas fa-trash-alt icon delete-icon";
+          deleteIcon.onclick = function () {
+            taskCounter--;
+            input.placeholder = "Write Code " + taskCounter;
+            li.remove();
+          };
+          li.appendChild(deleteIcon);
+
+          const updateIcon = document.createElement("i");
+          updateIcon.className = "fas fa-pencil-alt icon update-icon";
+          let updateCount = 0;
+          updateIcon.onclick = function () {
+            updateCount++;
+            const updatedTaskName = prompt("Enter updated task name:");
+            if (updatedTaskName !== null && updatedTaskName.trim() !== "") {
+              li.textContent =
+                updatedTaskName + " (Updated " + updateCount + " Times)";
+              li.appendChild(deleteIcon);
+              li.appendChild(updateIcon);
+            }
+          };
+          li.appendChild(updateIcon);
+          taskList.appendChild(li);
+          taskList.appendChild(document.createElement("br"));
+          taskCounter++;
+        }
+
+        input.placeholder = "Write code " + taskCounter;
+        input.value = "";
+      }
+    </script>
+  </body>
 </html>
